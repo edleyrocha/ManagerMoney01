@@ -11,7 +11,7 @@ package entity;
  * @author h10t93
  */
 public class User {
-    private int id;
+    private int id1;
     private String name;
     private String username;
     private String pass;
@@ -19,12 +19,12 @@ public class User {
     public User() {
     }
 
-    public int getId() {
-        return id;
+    public int getId1() {
+        return id1;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId1(int id1) {
+        this.id1 = id1;
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : log
-    Created on : May 3, 2014, 10:35:27 PM
+    Document   : index
+    Created on : May 5, 2014, 12:27:00 PM
     Author     : h10t93
 --%>
 
@@ -16,15 +16,18 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>JSP Page</title>
+            <link rel="stylesheet" href="css/temp.css"/>
+           
         </head>
         <body>
-            <h:form>
-                <h1><h:outputText value="Login"/></h1>
-                <h:inputText value="#{accountManagedBean.user}"></h:inputText><br/>
-                <h:inputText value="#{accountManagedBean.pass}"></h:inputText><br/>
-                <h:commandButton value="login" action="#{accountManagedBean.log()}"></h:commandButton>
-            </h:form>
+            <div id="wap">
+                <div id="header">
+                    
+                </div>
+                <div id="conten">
+                    
+                </div>
+            </div>
         </body>
     </html>
 </f:view>

@@ -7,6 +7,7 @@ package controller;
 
 import model.Process;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -53,7 +54,9 @@ public class AccountManagedBean {
     public String log() {
         Process pr = new Process();
         String result = "fail";
+
         if (pr.login(user, pass)) {
+
             result = "ok";
         }
         return result;

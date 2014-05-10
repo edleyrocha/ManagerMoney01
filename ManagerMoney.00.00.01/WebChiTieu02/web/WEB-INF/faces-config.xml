@@ -9,10 +9,28 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
-        <from-view-id>/log.jsp</from-view-id>
+        <from-view-id>Account/log.jsp</from-view-id>
         <navigation-case>
             <from-outcome>ok</from-outcome>
             <to-view-id>/home.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/loi.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>productBean</managed-bean-name>
+        <managed-bean-class>controller.ProductBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <description>add bill</description>
+        <from-view-id>/home.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/home.jsp</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>fail</from-outcome>
