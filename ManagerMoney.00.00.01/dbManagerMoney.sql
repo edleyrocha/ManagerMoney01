@@ -39,17 +39,18 @@ INSERT INTO tblCategorize VALUES('rau','')
 INSERT INTO tblCategorize VALUES('cu','')
 INSERT INTO tblCategorize VALUES('qua','')
 INSERT INTO tblCategorize VALUES('thit','')
+INSERT INTO tblCategorize VALUES('nuoc ngot','')
 GO
 --TABLE PRODUCT
 CREATE TABLE tblProduct(
 	productID INT IDENTITY PRIMARY KEY,
 	productName NVARCHAR(100) NOT NULL,
-	cateID INT NOT NULL,
+	cateID INT default 1 NULL,
 	productDes NTEXT NULL,
 	CONSTRAINT FK_product_cateorize FOREIGN KEY (cateID) REFERENCES tblCategorize(cateID)
 )
 GO
-insert into tblProduct values('rau muong',1,'')
+insert into tblProduct values('rau muong',2,'')
 insert into tblProduct values('khoai tay',2,'')
 insert into tblProduct values('ca chua',3,'')
 insert into tblProduct values('thit ga',4,'')
