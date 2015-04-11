@@ -1,49 +1,50 @@
-CREATE DATABASE dbManagerMoney
+USE [master];
+CREATE DATABASE [dbManagerMoney];
 GO
-USE dbManagerMoney
+USE [dbManagerMoney];
 GO
 -- TABLE USER
-
-CREATE TABLE tblUser(
-	ID_USER INT IDENTITY(1,1) PRIMARY KEY,
-	NAME NVARCHAR(100) NOT NULL,
-	USERNAME VARCHAR(20) UNIQUE NOT NULL,
-	PASS VARCHAR(100) NOT NULL,
-)
+CREATE TABLE [dbo].[tblUsers]
+(
+	[IdUser]   INT IDENTITY (1,1) PRIMARY KEY,
+	[Name]     NVARCHAR     (100) NOT NULL,
+	[Login]    NVARCHAR     (20)  UNIQUE NOT NULL,
+	[Password] NVARCHAR     (100) NOT NULL,
+);
 GO
 --TABLE CATEGORIZE 
-CREATE TABLE tblCategorize(
-	ID_CATEGORIZE INT IDENTITY(1,1) PRIMARY KEY,
-	NAME_CATEGORIZE VARCHAR(100) NOT NULL,
-	DESCRIPTION_CATEGORIZE NTEXT NULL,
-)
+CREATE TABLE [dbo].[tblCategorize]
+(
+	[IdCategorize]  INT IDENTITY (1,1) PRIMARY KEY,
+	[Name]          NVARCHAR     (100) NOT NULL,
+	[Description]   NTEXT NULL,
+);
 GO
 --TABLE PRODUCT
-CREATE TABLE tblProduct(
-	ID_PRODUCT INT IDENTITY PRIMARY KEY,
-	NAME_PRODUCT NVARCHAR(100) NOT NULL,
-	ID_CATEGORIZE INT NOT NULL,
-	DESCRIPTION_PRODUCT NTEXT NOT NULL,
-	CONSTRAINT FK_product_cateorize FOREIGN KEY tblProduct(ID_CATEGORIZE) REFERENCES tblCategorize(ID_CATEGORIZE)
-)
+CREATE TABLE [dbo].[tblProduct]
+(
+	[IdProduct]     INT IDENTITY PRIMARY KEY,
+	[IdCategorize]  INT CONSTRAINT [FK_tblProductIdCategorize_tblCategorizeIdCategorize] FOREIGN KEY REFERENCES [dbo].[tblCategorize]([IdCategorize]) NOT NULL,
+	[Name]          NVARCHAR (100) NOT NULL,
+	[Description]   NTEXT          NOT NULL,
+);
 GO
 --TABLE TOTAL AMOUNT DETAIL
-CREATE TABLE tblTotalAmountDetail(
-	ID_TOTAL_DETAIL INT IDENTITY(1,1) PRIMARY KEY,
-	ID_PRODUCT INT NOT NULL,
-	ID_USER INT NOT NULL,
-	UNIT_PRODUCT VARCHAR(100) NOT NULL,
-	PRICE FLOAT NOT NULL,
-	CONSTRAINT FK_TOTAL_PPRODUCT FOREIGN KEY tblTotalAmountDetail(ID_PRODUCT) REFERENCES tblPeoduct(ID_PRODUCT),
-	CONSTRAINT FK_TOTAL_USER  FOREIGN KEY tblTotalAmountDetail(ID_USER) REFERENCES tblUser(ID_USER)
-)
+CREATE TABLE [dbo].[tblTotalAmountDetail]
+(
+	[IdTotalDetail] INT IDENTITY (1,1) PRIMARY KEY,
+	[IdProduct]     INT CONSTRAINT    [FK_tblTotalAmountDetailIdProduct_tblProductIdProduct] FOREIGN KEY REFERENCES [dbo].[tblProduct]([IdProduct]) NOT NULL,
+	[IdUser]        INT CONSTRAINT    [FK_tblTotalAmountDetailIdUser_tblUsersIdUser]         FOREIGN KEY REFERENCES [dbo].[tblUsers](IdUser)        NOT NULL,
+	[UnitProduct]   NVARCHAR     (100) NOT NULL,
+	[Price]         FLOAT              NOT NULL,
+);
 GO
 -- TABLE TOTAL AMOUNT / MOTH
-
-CREATE TABLE tblTotalAmount(
-	ID_TOTAL INT IDENTITY(1,1) PRIMARY KEY,
-	ID_TOTAL_DETAIL INT NOT NULL,
-	DATE_BUY DATE NOT NULL,
-	TOTAL_AMOUNT FLOAT NOT NULL,
-	CONSTRAINT FK_TOTAL_DETAIL FOREIGN KEY tblTotalAmount(ID_TOTAL) REFERENCES tblTotalAmountDetail(ID_TOTAL_DETAIL)
-)
+CREATE TABLE [dbo].[tblTotalAmount]
+(
+	[IdTotal]       INT IDENTITY(1,1) PRIMARY KEY,
+	[IdTotalDetail] INT CONSTRAINT    [FK_tblTotalAmountIdTotalDetail_tblTotalAmountDetailIdTotalDetail] FOREIGN KEY REFERENCES [dbo].[tblTotalAmountDetail](IdTotalDetail) NOT NULL,
+	[DateBuy]       DATE NOT NULL,
+	[TotalAmount]   FLOAT NOT NULL,
+);
+GO
